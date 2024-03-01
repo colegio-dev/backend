@@ -1,14 +1,12 @@
-import express from "express";
-import cors from "cors";
-import db from "./database/db.js";
-import routes from "./routes/routes.js";
-import mysql from 'mysql'
-
+/* const express = require('express')
+const cors = require('cors')
+const mysql = require('mysql')
+const bodyParser = require('body-parser')
 const app = express()
-
 app.use(cors())
-app.use(express.json())
-app.use('/novedades', routes)
+app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.json({limit: '10mb'}))
+
 
 const credentials = {
     host: 'localhost',
@@ -17,18 +15,9 @@ const credentials = {
     database: 'novedadesgenerales'
 }
 
-
-
-try{
-    await db.authenticate()
-    console-log('conexion exitosa a la DB')
-} catch (error) {
-    console.log(`El error de conexion es:${error}`)
-}
-
-app.listen(8000, () => {
-    console.log("Server UP running in http://localhost:8000/")
-});
+app.get('/', (req, res)=>{
+    res.send('hola')
+})
 
 app.post('/login', (req, res) => {
     const {username, password} = req.body
@@ -39,11 +28,11 @@ app.post('/login', (req, res) => {
             res.status(500).send(err)
         }else{
             if(result.length>0){
-                res.status(200).send(result[0])
+                res.status(200).send(result(0))
             }else{
                 res.status(400).send('usuario no existe')
             }
         }
     })
     connection.end()
-})
+}) */
