@@ -16,4 +16,6 @@ const novedadModel = db.define('novedades', {
     timestamps: false
 })
 
+
+
 export default novedadModel;

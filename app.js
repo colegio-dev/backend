@@ -4,11 +4,13 @@ import db from "./database/db.js";
 import routes from "./routes/routes.js";
 import mysql from 'mysql'
 
+
 const app = express()
 
 app.use(cors())
 app.use(express.json())
 app.use('/novedades', routes)
+
 
 const credentials = {
     host: 'localhost',
