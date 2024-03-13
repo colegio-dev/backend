@@ -6,10 +6,27 @@ import mysql from 'mysql'
 
 
 const app = express()
+const cors = require('cors')
 
-app.use(cors())
+
+app.use(cors(
+    config.aplication.cors.server
+))
 app.use(express.json())
 app.use('/novedades', routes)
+
+const config = {
+    aplication: {
+        cors: {
+            server: [
+                {
+                    origin: 'https://sistema-novedades-backend.vercel.app/',
+                    credentials: true
+                }
+            ]
+        }
+    }
+}
 
 
 /* const credentials = {
