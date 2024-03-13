@@ -12,13 +12,19 @@ app.use(express.json())
 app.use('/novedades', routes)
 
 
-const credentials = {
+/* const credentials = {
     host: 'localhost',
     user: 'root',
     password: '',
     database: 'novedadesgenerales'
-}
+} */
 
+const credentials = {
+    host: 'benlvzvkhno5tql1tp7x-mysql.services.clever-cloud.com',
+    user: 'ux05ys8xc3hyetfw',
+    password: '6LdGdPDqajTO4yC1Afrd',
+    database: 'benlvzvkhno5tql1tp7x'
+}
 
 
 try{
@@ -29,7 +35,8 @@ try{
 }
 
 app.listen(8000, () => {
-    console.log("Server UP running in http://localhost:8000/")
+    /* console.log("Server UP running in http://localhost:8000/") */
+    console.log('server run in clevercloud')
 });
 
 app.post('/login', (req, res) => {
