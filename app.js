@@ -20,7 +20,7 @@ const config = {
         cors: {
             server: [
                 {
-                    origin: 'https://sistema-novedades-backend.vercel.app/',
+                    origin: ('*'),
                     credentials: true
                 }
             ]
