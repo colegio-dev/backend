@@ -6,16 +6,16 @@ import mysql from 'mysql'
 
 
 const app = express()
-const cors = require('cors')
 
 
-app.use(cors(
+
+/* app.use(cors(
     config.aplication.cors.server
-))
+)) */
 app.use(express.json())
 app.use('/novedades', routes)
 
-const config = {
+/* const config = {
     aplication: {
         cors: {
             server: [
@@ -26,7 +26,7 @@ const config = {
             ]
         }
     }
-}
+} */
 
 
 /* const credentials = {
@@ -34,7 +34,7 @@ const config = {
     user: 'root',
     password: '',
     database: 'novedadesgenerales'
-} */
+} */ 
 
 const credentials = {
     host: 'benlvzvkhno5tql1tp7x-mysql.services.clever-cloud.com',
