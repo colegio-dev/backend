@@ -6,12 +6,10 @@ import mysql from 'mysql'
 
 
 const app = express()
+const cors = require('cors')
 
 
-
-/* app.use(cors(
-    config.aplication.cors.server
-))  */
+app.use(cors()) 
 app.use(express.json())
 app.use('/novedades', routes)
 
@@ -26,7 +24,7 @@ app.use('/novedades', routes)
             ]
         }
     }
-} */
+}  */
 
 
 /* const credentials = {
