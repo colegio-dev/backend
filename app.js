@@ -15,7 +15,7 @@ app.use(cors(
 app.use(express.json())
 app.use('/novedades', routes)
 
-/* const config = {
+const config = {
     aplication: {
         cors: {
             server: [
@@ -26,7 +26,7 @@ app.use('/novedades', routes)
             ]
         }
     }
-} */
+}
 
 
 /* const credentials = {
