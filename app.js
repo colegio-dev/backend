@@ -9,9 +9,9 @@ const app = express()
 
 
 
-/* app.use(cors(
+app.use(cors(
     config.aplication.cors.server
-)) */
+)) 
 app.use(express.json())
 app.use('/novedades', routes)
 
