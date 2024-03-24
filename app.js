@@ -13,18 +13,14 @@ app.use(cors())
 app.use(express.json())
 app.use('/novedades', routes)
 
-/* const config = {
-    aplication: {
-        cors: {
-            server: [
-                {
-                    origin: ('*'),
-                    credentials: true
-                }
-            ]
-        }
-    }
-}  */
+const corsOptions = {
+    origin: 'https://novedades-policia.web.app', // Cambia por tu dominio permitido
+    methods: 'GET,POST', // Métodos HTTP permitidos
+    credentials: true, // Habilita el envío de cookies y credenciales
+  };
+  
+  app.use(cors(corsOptions));
+  
 
 
 /* const credentials = {
