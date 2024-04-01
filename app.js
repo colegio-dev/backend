@@ -42,7 +42,7 @@ const credentials = {
 
 try{
     await db.authenticate()
-    console-log('conexion exitosa a la DB')
+    console.log('conexion exitosa a la DB')
 } catch (error) {
     console.log(`El error de conexion es:${error}`)
 }
