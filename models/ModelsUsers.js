@@ -4,9 +4,13 @@ import { DataTypes } from "sequelize";
 
 const userModel = db.define('login', {
     id: { type: DataTypes.INTEGER, primaryKey: true },
-    user: { type: DataTypes.STRING },
-    username: { type: DataTypes.STRING},
-    password: { type: DataTypes.STRING }
+    nombres: { type: DataTypes.STRING },
+    apellido: { type: DataTypes.STRING },
+    legajo: { type: DataTypes.INTEGER },
+    file: { type: DataTypes.STRING },
+    username: {type:DataTypes.STRING},
+    password: {type:DataTypes.STRING},
+    user: {type:DataTypes.INTEGER}
 },{
     timestamps: false
 });
