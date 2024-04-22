@@ -10,8 +10,11 @@ export const getAllUsers = async (req, res) => {
         res.json(users)
     } catch (error) {
         res.json ( {message: error.message} )
+        console.log(error);
     }
 }
+
+
 //traer un registro
 export const getUser = async (req, res) => {
     try {
@@ -21,8 +24,11 @@ export const getUser = async (req, res) => {
         res.json(user[0])
     } catch (error) {
         res.json ( {message: error.message} )
+
     }
 }
+
+
 //crear un registro
 export const createUser = async (req, res) => {
     try {
@@ -34,6 +40,8 @@ export const createUser = async (req, res) => {
         res.json ( {message: error.message} )
     }
 }
+
+
 //actualizar registro
 export const updateUser = async (req, res) => {
     try {
@@ -47,6 +55,8 @@ export const updateUser = async (req, res) => {
         res.json ( {message: error.message} )
     }
 }
+
+
 //eliminar registro
 export const deleteUser = async(req, res) => {
     try {

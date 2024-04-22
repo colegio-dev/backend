@@ -8,13 +8,14 @@ const novedadModel = db.define('novedades', {
     fecha: { type: DataTypes.TIME },
     lugar: { type: DataTypes.STRING },
     tipoNovedad: { type: DataTypes.STRING },
-    comisaria: { type: DataTypes.INTEGER },
+    comisaria: { type: DataTypes.STRING },
     unidad: { type: DataTypes.INTEGER },
     personalInterv: { type: DataTypes.STRING },
-    resumen: { type: DataTypes.STRING }
+    resumen: { type: DataTypes.TEXT }
 },{
     timestamps: false
 })
+
 
 
 
