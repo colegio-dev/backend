@@ -8,6 +8,9 @@ import routesLogin from "./routes/routesLogin.js";
 import db from "./database/db.js";
 
 const app = express();
+const bodyParser = require('body-parser')
+const bcrypt = require('bcrypt')
+app.use(bodyParser.urlencoded({extended: true}))
 
 app.use(cors()); 
 app.use(express.json());
@@ -23,15 +26,49 @@ const credentials = {
     password: 'aaXSNHjePyL8tunxRuPu',
     database: 'bdpynnjudwl1h6ugmc47'
 };
-const pool = mysql.createPool({
+const connection = mysql.createConnection({
+    ...credentials
+})
+connection.connect((err)=>{
+    if(err){
+        console.error(err)
+        return
+    }
+    console.log('conexion exitosa');
+})
+/* const pool = mysql.createPool({
     connectionLimit: 10,
     ...credentials
-});
+}); */
 
 app.post('/logins', (req, res) => {
     const { username, password } = req.body;
-    const query = 'SELECT * FROM logins WHERE username = ? AND password = ?';
-    pool.query(query, [username, password], (err, result) => {
+    const query = 'SELECT * FROM usuarios WHERE username = ? AND password = ?';
+    connection.query(query,[username, password], (err, results)=>{
+        if(err){
+            console.error(err);
+            res.status(500).send('error de servidor')
+            return
+        }
+        if (results.length === 0){
+            res.status(401).send('usuario no encontrado')
+            return
+        }
+        const user = results[0]
+        bcrypt.compare(password, user,password, (err, result)=>{
+            if(err){
+                console.error(err);
+                res.status(500).send('error del servidor')
+                return
+            }
+            if (result){
+                res.status(200).send('autenticacion exitosa')
+            } else {
+                res.status(401).send('contraseña incorrecta')
+            }
+        })
+    })
+    /* pool.query(query, [username, password], (err, result) => {
         if (err) {
             console.error('Error en la consulta SQL:', err);
             res.status(500).send('Error en la base de datos');
@@ -42,7 +79,7 @@ app.post('/logins', (req, res) => {
                 res.status(400).send('Usuario no existe');
             }
         }
-    });
+    }); */
 });
 
 const PORT = process.env.PORT || 8000;
