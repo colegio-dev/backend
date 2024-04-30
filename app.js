@@ -14,7 +14,7 @@ app.use(express.json());
 app.use('/novedades', routes);
 app.use('/identificaciones', routesIdent);
 app.use('/usuarios', routesUsers);
-app.use('/login', routesLogin);
+app.use('/login', routesLogin)
 
 
 const credentials = {
@@ -23,6 +23,10 @@ const credentials = {
     password: 'aaXSNHjePyL8tunxRuPu',
     database: 'bdpynnjudwl1h6ugmc47'
 };
+const pool = mysql.createPool({
+    connectionLimit: 10,
+    ...credentials
+});
 
 app.post('/login', (req, res) => {
     const { username, password } = req.body;
