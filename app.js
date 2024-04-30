@@ -16,10 +16,6 @@ app.use('/identificaciones', routesIdent);
 app.use('/usuarios', routesUsers);
 app.use('/login', routesLogin);
 
-const pool = mysql.createPool({
-    connectionLimit: 10,
-    ...credentials
-});
 
 const credentials = {
     host: 'bdpynnjudwl1h6ugmc47-mysql.services.clever-cloud.com',

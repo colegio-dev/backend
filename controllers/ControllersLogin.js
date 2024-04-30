@@ -1,4 +1,4 @@
-import loginModel from "../models/ModelsLogin"
+import loginModel from "../models/ModelsLogin.js"
 
 
 //metodos para el CRUD

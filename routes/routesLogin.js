@@ -1,6 +1,6 @@
 import express from 'express'
 
-import { getAllLogin, getLogin, updateLogin, createLogin, deleteLogin } from '../controllers/ControllersLogin';
+import { getAllLogin, getLogin, updateLogin, createLogin, deleteLogin } from '../controllers/ControllersLogin.js';
 
 const routesLogin = express.Router()
 
