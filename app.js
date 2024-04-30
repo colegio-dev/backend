@@ -36,10 +36,10 @@ app.use(cors(corsOptions));
 } */  
 
 const credentials = {
-    host: 'benlvzvkhno5tql1tp7x-mysql.services.clever-cloud.com',
-    user: 'ux05ys8xc3hyetfw',
-    password: '6LdGdPDqajTO4yC1Afrd',
-    database: 'benlvzvkhno5tql1tp7x'
+    host: 'bdpynnjudwl1h6ugmc47-mysql.services.clever-cloud.com',
+    user: 'urqnauyuphr5vjig',
+    password: 'aaXSNHjePyL8tunxRuPu',
+    database: 'bdpynnjudwl1h6ugmc47'
 }  
 
 
