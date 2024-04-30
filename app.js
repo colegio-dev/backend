@@ -30,7 +30,7 @@ const pool = mysql.createPool({
 
 app.post('/logins', (req, res) => {
     const { username, password } = req.body;
-    const query = 'SELECT * FROM login WHERE username = ? AND password = ?';
+    const query = 'SELECT * FROM logins WHERE username = ? AND password = ?';
     pool.query(query, [username, password], (err, result) => {
         if (err) {
             console.error('Error en la consulta SQL:', err);
