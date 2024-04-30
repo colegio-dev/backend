@@ -6,8 +6,8 @@ import loginModel from "../models/ModelsLogin.js"
 //traer todos los registros
 export const getAllLogin = async (req, res) => {
     try {
-        const login = await loginModel.findAll()
-        res.json(login)
+        const logins = await loginModel.findAll()
+        res.json(logins)
     } catch (error) {
         res.json ( {message: error.message} )
         console.log(error);
