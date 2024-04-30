@@ -40,6 +40,16 @@ connection.connect((err)=>{
     ...credentials
 }); */
 
+
+const corsOptions = {
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Credentials": true,
+    'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE, PATCH, OPTIONS',
+    "Access-Control-Allow-Headers": 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json'
+  };
+  
+app.use(cors(corsOptions));
+
 app.post('/logins', (req, res) => {
     const { username, password } = req.body;
     const query = 'SELECT * FROM usuarios WHERE username = ? AND password = ?';
