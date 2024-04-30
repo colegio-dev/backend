@@ -2,7 +2,7 @@ import db from "../database/db.js";
 
 import { DataTypes } from "sequelize";
 
-const loginModel = db.define('login', {
+const loginModel = db.define('logins', {
     id: { type: DataTypes.INTEGER, primaryKey: true },
     username: {type:DataTypes.STRING},
     password: {type:DataTypes.STRING},
