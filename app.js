@@ -7,10 +7,9 @@ import routesUsers from './routes/routesUsers.js'
 import routesLogin from "./routes/routesLogin.js";
 import db from "./database/db.js";
 
+
 const app = express();
-const bodyParser = require('body-parser')
-const bcrypt = require('bcrypt')
-app.use(bodyParser.urlencoded({extended: true}))
+
 
 app.use(cors()); 
 app.use(express.json());
