@@ -16,7 +16,6 @@ app.use(express.json());
 app.use('/novedades', routes);
 app.use('/identificaciones', routesIdent);
 app.use('/usuarios', routesUsers);
-app.use('/logins', routesLogin);
 
 
 const credentials = {
@@ -52,7 +51,7 @@ app.use(cors(corsOptions));
 
 app.post('/logins', (req, res) => {
     const { username, password } = req.body;
-    const query = 'SELECT * FROM usuarios WHERE username = ? AND password = ?';
+    const query = 'SELECT * FROM logins WHERE username = ? AND password = ?';
     connection.query(query,[username, password], (err, results)=>{
         if(err){
             console.error(err);
