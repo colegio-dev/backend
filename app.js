@@ -14,7 +14,7 @@ app.use(express.json());
 app.use('/novedades', routes);
 app.use('/identificaciones', routesIdent);
 app.use('/usuarios', routesUsers);
-app.use('/login', routesLogin)
+app.use('/logins', routesLogin);
 
 
 const credentials = {
@@ -28,7 +28,7 @@ const pool = mysql.createPool({
     ...credentials
 });
 
-app.post('/login', (req, res) => {
+app.post('/logins', (req, res) => {
     const { username, password } = req.body;
     const query = 'SELECT * FROM login WHERE username = ? AND password = ?';
     pool.query(query, [username, password], (err, result) => {
