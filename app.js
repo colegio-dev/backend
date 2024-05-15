@@ -4,7 +4,6 @@ import mysql from 'mysql'
 import routes from "./routes/routes.js";
 import routesIdent from './routes/routesIdent.js';
 import routesUsers from './routes/routesUsers.js' 
-import routesLogin from "./routes/routesLogin.js";
 import db from "./database/db.js";
 
 
@@ -28,10 +27,10 @@ app.use(cors(corsOptions));
   
 
 const credentials = {
-    host: 'bdpynnjudwl1h6ugmc47-mysql.services.clever-cloud.com',
-    user: 'urqnauyuphr5vjig',
-    password: 'aaXSNHjePyL8tunxRuPu',
-    database: 'bdpynnjudwl1h6ugmc47'
+    host: 'bgvrspqkhbebqtwjz6xe-mysql.services.clever-cloud.com',
+    user: 'u2zpuhjtoirav8rn',
+    password: 'nvmLjlKyBkOBgw2DbDH9',
+    database: 'bgvrspqkhbebqtwjz6xe'
 };
 
 
@@ -46,6 +45,10 @@ app.listen(8000, () => {
     /* console.log("Server UP running in http://localhost:8000/") */
     console.log('server run in clevercloud')
 });
+
+
+
+
 
 app.post('/logins', (req, res) => {
     const {username, password} = req.body
