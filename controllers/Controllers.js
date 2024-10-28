@@ -1,32 +1,32 @@
 //importamos el modelo
-import novedadModel from "../models/Models.js";
+import alumnoModel from "../models/Models.js"
 
 //metodos para el CRUD
 
 //traer todos los registros
-export const getAllNovedad = async (req, res) => {
+export const getAllAlumnos = async (req, res) => {
     try {
-        const novedades = await novedadModel.findAll()
-        res.json(novedades)
+        const alumnos = await alumnoModel.findAll()
+        res.json(alumnos)
     } catch (error) {
         res.json ( {message: error.message} )
     }
 }
 //traer un registro
-export const getNovedad = async (req, res) => {
+export const getAlumno = async (req, res) => {
     try {
-        const novedad = await novedadModel.findAll({
+        const alumno = await alumnoModel.findAll({
             where:{id:req.params.id}
         })
-        res.json(novedad[0])
+        res.json(alumno[0])
     } catch (error) {
         res.json ( {message: error.message} )
     }
 }
 //crear un registro
-export const createNovedad = async (req, res) => {
+export const createAlumno = async (req, res) => {
     try {
-        await novedadModel.create(req.body)
+        await alumnoModel.create(req.body)
         res.json({
             "message":"Registro creado correctamente"
         })
@@ -35,9 +35,9 @@ export const createNovedad = async (req, res) => {
     }
 }
 //actualizar registro
-export const updateNovedad = async (req, res) => {
+export const updateAlumno = async (req, res) => {
     try {
-        await novedadModel.update(req.body, {
+        await alumnoModel.update(req.body, {
             where: { id: req.params.id}
         })
         res.json({
@@ -48,9 +48,9 @@ export const updateNovedad = async (req, res) => {
     }
 }
 //eliminar registro
-export const deleteNovedad = async(req, res) => {
+export const deleteAlumno = async(req, res) => {
     try {
-        await novedadModel.destroy({
+        await alumnoModel.destroy({
             where: {id: req.params.id}
         })
         res.json({

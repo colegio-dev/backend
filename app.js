@@ -2,9 +2,10 @@ import express from "express";
 import cors from "cors";
 import mysql from 'mysql'
 import routes from "./routes/routes.js";
-import routesIdent from './routes/routesIdent.js';
-import routesUsers from './routes/routesUsers.js' 
+import routesPagos from "./routes/routesPago.js";
 import db from "./database/db.js";
+
+
 
 
 const app = express();
@@ -12,9 +13,9 @@ const app = express();
 
 app.use(cors()); 
 app.use(express.json());
-app.use('/novedades', routes);
-app.use('/identificaciones', routesIdent);
-app.use('/usuarios', routesUsers);
+app.use('/students', routes);
+app.use('/invoices', routesPagos);
+
 
 const corsOptions = {
     "Access-Control-Allow-Origin": "*",
@@ -25,14 +26,20 @@ const corsOptions = {
   
 app.use(cors(corsOptions));
   
-
 const credentials = {
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    database: 'facturador'
+};
+
+/* const credentials = {
     host: 'bgvrspqkhbebqtwjz6xe-mysql.services.clever-cloud.com',
     user: 'u2zpuhjtoirav8rn',
     password: 'nvmLjlKyBkOBgw2DbDH9',
     database: 'bgvrspqkhbebqtwjz6xe'
 };
-
+ */
 
 try{
     await db.authenticate()

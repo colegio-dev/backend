@@ -3,20 +3,22 @@ import db from "../database/db.js";
 //importamos sequelize
 import { DataTypes } from "sequelize";
 
-const novedadModel = db.define('novedades', {
+const alumnoModel = db.define('facturador', {
     id: { type: DataTypes.INTEGER, primaryKey: true },
-    fecha: { type: DataTypes.TIME },
-    lugar: { type: DataTypes.STRING },
-    tipoNovedad: { type: DataTypes.STRING },
-    comisaria: { type: DataTypes.STRING },
-    unidad: { type: DataTypes.INTEGER },
-    personalInterv: { type: DataTypes.STRING },
-    resumen: { type: DataTypes.TEXT }
+    nombres: { type: DataTypes.STRING },
+    apellido: { type: DataTypes.STRING },
+    dni: { type: DataTypes.INTEGER },
+    domicilio: { type: DataTypes.STRING },
+    grado: { type: DataTypes.STRING },
+    tutor: { type: DataTypes.STRING },
+    telefono: { type: DataTypes.INTEGER },
+    observaciones: { type: DataTypes.STRING }
 },{
-    timestamps: false
+    timestamps: false,
+    tableName: 'students'
 })
 
 
 
 
-export default novedadModel;
+export default alumnoModel;

@@ -1,15 +1,12 @@
 import express from "express";
-import { createNovedad, deleteNovedad, getAllNovedad, getNovedad, updateNovedad } from "../controllers/Controllers.js";
+import { createAlumno, getAllAlumnos, getAlumno, updateAlumno, deleteAlumno } from '../controllers/Controllers.js'
 
+const routesAlumnos = express.Router()
 
+routesAlumnos.get('/', getAllAlumnos)
+routesAlumnos.get('/:id', getAlumno)
+routesAlumnos.post('/', createAlumno)
+routesAlumnos.put('/:id', updateAlumno)
+routesAlumnos.delete('/:id', deleteAlumno)
 
-const routes = express.Router()
-
-routes.get('/', getAllNovedad)
-routes.get('/:id', getNovedad)
-routes.post('/', createNovedad)
-routes.put('/:id', updateNovedad)
-routes.delete('/:id', deleteNovedad)
-
-
-export default routes;
+export default routesAlumnos;
