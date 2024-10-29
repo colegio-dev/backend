@@ -26,20 +26,20 @@ const corsOptions = {
   
 app.use(cors(corsOptions));
   
-const credentials = {
+/* const credentials = {
     host: 'localhost',
     user: 'root',
     password: '',
     database: 'facturador'
+}; */
+
+const credentials = {
+    host: 'byfxqbppdhxlzgmjswih-mysql.services.clever-cloud.com',
+    user: 'ucbq5qf5c5qivn8g',
+    password: 'iSiz3Uj56Bce8KmhIKqO',
+    database: 'byfxqbppdhxlzgmjswih'
 };
 
-/* const credentials = {
-    host: 'bgvrspqkhbebqtwjz6xe-mysql.services.clever-cloud.com',
-    user: 'u2zpuhjtoirav8rn',
-    password: 'nvmLjlKyBkOBgw2DbDH9',
-    database: 'bgvrspqkhbebqtwjz6xe'
-};
- */
 
 try{
     await db.authenticate()
