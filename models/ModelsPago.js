@@ -7,7 +7,6 @@ const pagosModel = db.define('facturador', {
     nombres: { type:DataTypes.STRING },
     apellido: { type:DataTypes.STRING },
     dni: { type:DataTypes.INTEGER },
-    fecha: { type:DataTypes.DATE },
     tipoPago: { type:DataTypes.STRING },
     importe: { type:DataTypes.DOUBLE },
     numCuota: { type:DataTypes.INTEGER },

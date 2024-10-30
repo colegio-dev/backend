@@ -31,7 +31,7 @@ app.use(cors(corsOptions));
     user: 'root',
     password: '',
     database: 'facturador'
-}; */
+}; */ 
 
 const credentials = {
     host: 'byfxqbppdhxlzgmjswih-mysql.services.clever-cloud.com',
