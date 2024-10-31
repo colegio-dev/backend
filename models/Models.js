@@ -5,13 +5,18 @@ import { DataTypes } from "sequelize";
 
 const alumnoModel = db.define('facturador', {
     id: { type: DataTypes.INTEGER, primaryKey: true },
-    nombres: { type: DataTypes.STRING },
-    apellido: { type: DataTypes.STRING },
-    dni: { type: DataTypes.INTEGER },
+    nombreAlumno: { type: DataTypes.STRING },
+    apellidoAlumno: { type: DataTypes.STRING },
+    dniAlumno: { type: DataTypes.INTEGER },
+    fechaNac: { type: DataTypes.DATE},
     domicilio: { type: DataTypes.STRING },
     grado: { type: DataTypes.STRING },
-    tutor: { type: DataTypes.STRING },
-    telefono: { type: DataTypes.INTEGER },
+    nombrePadre: { type: DataTypes.STRING },
+    dniPadre: {type: DataTypes.INTEGER},
+    telefonoPadre: { type: DataTypes.INTEGER },
+    nombreMadre: { type: DataTypes.STRING },
+    dniMadre: {type: DataTypes.INTEGER},
+    telefonoMadre: { type: DataTypes.INTEGER },
     observaciones: { type: DataTypes.STRING }
 },{
     timestamps: false,
