@@ -3,8 +3,9 @@ import cors from "cors";
 import mysql from 'mysql'
 import bodyParser from "body-parser";
 import routes from "./routes/routes.js";
-import routesPagos from "./routes/routesPago.js";
+//import routesPagos from "./routes/routesPago.js";
 import db from "./database/db.js";
+import routesUsers from "./routes/routesUsers.js";
 
 
 
@@ -16,8 +17,8 @@ app.use(bodyParser.json())
 app.use(cors()); 
 app.use(express.json());
 app.use('/students', routes);
-app.use('/invoices', routesPagos);
-
+//app.use('/invoices', routesPagos);
+app.use('/users', routesUsers)
 
 const corsOptions = {
     "Access-Control-Allow-Origin": "*",
@@ -33,7 +34,7 @@ app.use(cors(corsOptions));
     user: 'root',
     password: '',
     database: 'facturador'
-}; */ 
+};*/
 
 const credentials = {
     host: 'byfxqbppdhxlzgmjswih-mysql.services.clever-cloud.com',
@@ -77,7 +78,7 @@ app.post('/logins', (req, res) => {
 
 
 
-app.post('/students', async (req, res) => {
+/* app.post('/students', async (req, res) => {
     const { nombreAlumno, apellidoAlumno, dniAlumno } = req.body;
 
     try {
@@ -99,3 +100,4 @@ app.post('/students', async (req, res) => {
         return res.status(500).send(error.message);
     }
 });
+ */
