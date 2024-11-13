@@ -78,7 +78,7 @@ app.post('/logins', (req, res) => {
 
 
 
-/* app.post('/students', async (req, res) => {
+app.post('/students', async (req, res) => {
     const { nombreAlumno, apellidoAlumno, dniAlumno } = req.body;
 
     try {
@@ -100,4 +100,3 @@ app.post('/logins', (req, res) => {
         return res.status(500).send(error.message);
     }
 });
- */
