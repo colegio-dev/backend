@@ -21,7 +21,7 @@ app.use('/students', routes);
 app.use('/users', routesUsers)
 
 const corsOptions = {
-    "Access-Control-Allow-Origin": "https://facturador-colegio.web.app/",
+    "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Credentials": true,
     'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE, PATCH, OPTIONS',
     "Access-Control-Allow-Headers": 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json'

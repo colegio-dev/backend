@@ -13,10 +13,10 @@ const alumnoModel = db.define('facturador', {
     grado: { type: DataTypes.STRING },
     nombrePadre: { type: DataTypes.STRING },
     dniPadre: {type: DataTypes.INTEGER},
-    telefonoPadre: { type: DataTypes.INTEGER },
+    telefonoPadre: { type: DataTypes.STRING },
     nombreMadre: { type: DataTypes.STRING },
     dniMadre: {type: DataTypes.INTEGER},
-    telefonoMadre: { type: DataTypes.INTEGER },
+    telefonoMadre: { type: DataTypes.STRING },
     observaciones: { type: DataTypes.STRING }
 },{
     timestamps: false,
