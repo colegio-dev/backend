@@ -10,7 +10,7 @@ const userModel = db.define('facturador', {
     apellidoUser: { type: DataTypes.STRING },
     usuario: {  type: DataTypes.STRING },
     password: { type: DataTypes.STRING },
-    user: {type: DataTypes.STRING}
+    tipoUsuario: {type: DataTypes.STRING}
 },{
     timestamps: false,
     tableName: 'users'

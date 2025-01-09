@@ -1,102 +1,103 @@
 import express from "express";
 import cors from "cors";
-import mysql from 'mysql'
+import mysql from "mysql";
 import bodyParser from "body-parser";
 import routes from "./routes/routes.js";
-//import routesPagos from "./routes/routesPago.js";
-import db from "./database/db.js";
+import routesPagos from "./routes/routesPago.js";
 import routesUsers from "./routes/routesUsers.js";
 
 
 
 
+// Configuración de Express
 const app = express();
+app.use(cors()); // Habilitar CORS
+app.use(bodyParser.json()); // Middleware para procesar JSON
+app.use(express.json()); // Middleware adicional para JSON
 
-app.use(bodyParser.json())
+// Rutas
+app.use("/students", routes);
+app.use("/invoices", routesPagos);
+app.use("/users", routesUsers);
 
-app.use(cors()); 
-app.use(express.json());
-app.use('/students', routes);
-//app.use('/invoices', routesPagos);
-app.use('/users', routesUsers)
-
-const corsOptions = {
-    "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Credentials": true,
-    'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE, PATCH, OPTIONS',
-    "Access-Control-Allow-Headers": 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json'
-  };
-  
-app.use(cors(corsOptions));
-  
-/* const credentials = {
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'facturador'
-};*/
-
+// Configuración de la base de datos
 const credentials = {
-    host: 'byfxqbppdhxlzgmjswih-mysql.services.clever-cloud.com',
-    user: 'ucbq5qf5c5qivn8g',
-    password: 'iSiz3Uj56Bce8KmhIKqO',
-    database: 'byfxqbppdhxlzgmjswih'
+  host: "localhost",
+  user: "root",
+  password: "",
+  database: "facturador",
 };
 
+// Configuración de conexión global para evitar reconexiones innecesarias
+const dbConnection = mysql.createPool(credentials);
 
-try{
-    await db.authenticate()
-    console.log('conexion exitosa a la DB')
-} catch (error) {
-    console.log(`El error de conexion es:${error}`)
-}
+// Endpoint para login
+/* app.post("/logins", (req, res) => {
+  const { username, password } = req.body;
+  const query = "SELECT * FROM logins WHERE username = ? AND password = ?";
+  
+  dbConnection.query(query, [username, password], (err, results) => {
+    if (err) {
+      return res.status(500).send({ error: "Error en el servidor", details: err.message });
+    }
+    if (results.length > 0) {
+      return res.status(200).send(results[0]);
+    } else {
+      return res.status(400).send({ error: "Usuario no existe" });
+    }
+  });
+}); */
 
-app.listen(8000, () => {
-    /* console.log("Server UP running in http://localhost:8000/") */
-    console.log('server run in clevercloud')
+// Endpoint para agregar estudiantes
+app.post("/students", (req, res) => {
+  const { nombreAlumno, apellidoAlumno, dniAlumno } = req.body;
+
+  // Verificar si ya existe un estudiante con el mismo DNI
+  const checkQuery = "SELECT * FROM students WHERE dniAlumno = ?";
+  dbConnection.query(checkQuery, [dniAlumno], (err, results) => {
+    if (err) {
+      return res.status(500).send({ error: "Error en el servidor", details: err.message });
+    }
+    if (results.length > 0) {
+      return res.status(400).send({ error: "El DNI ya está registrado." });
+    }
+
+    // Si no existe, insertar el nuevo estudiante
+    const insertQuery = "INSERT INTO students (nombreAlumno, apellidoAlumno, dniAlumno) VALUES (?, ?, ?)";
+    dbConnection.query(insertQuery, [nombreAlumno, apellidoAlumno, dniAlumno], (err) => {
+      if (err) {
+        return res.status(500).send({ error: "Error al guardar el estudiante", details: err.message });
+      }
+      return res.status(201).send({ message: "Estudiante agregado exitosamente." });
+    });
+  });
+});
+
+//Borra usuario de Firebase
+app.delete('/users/:id', async (req, res) => {
+  const { id } = req.params;
+  const { firebaseUid } = req.body;
+
+  try {
+    if (firebaseUid) {
+      await admin.auth().deleteUser(firebaseUid);
+      console.log("Usuario eliminado de Firebase Authentication");
+    }
+
+    await db.query("DELETE FROM users WHERE id = ?", [id]);
+    console.log("Usuario eliminado de la base de datos");
+    res.status(200).send("Usuario eliminado");
+  } catch (error) {
+    console.error("Error al eliminar usuario:", error);
+    res.status(500).send("Error al eliminar el usuario");
+  }
 });
 
 
 
-app.post('/logins', (req, res) => {
-    const {username, password} = req.body
-    const values = [username, password]
-    var connection = mysql.createConnection(credentials)
-    connection.query('SELECT * FROM logins WHERE username = ? AND password = ?', values, (err, result)=> {
-        if(err){
-            res.status(500).send(err)
-        }else{
-            if(result.length>0){
-                res.status(200).send(result[0])
-            }else{
-                res.status(400).send('usuario no existe')
-            }
-        }
-    })
-    connection.end()
-})
 
 
-
-app.post('/students', async (req, res) => {
-    const { nombreAlumno, apellidoAlumno, dniAlumno } = req.body;
-
-    try {
-        // Verifica si el DNI ya existe
-        const existingStudent = await Student.findOne({ dniAlumno });
-        if (existingStudent) {
-            return res.status(400).send('El DNI ya está registrado.');
-        }
-
-        // Agrega el nuevo estudiante
-        const newStudent = new Student({ nombreAlumno, apellidoAlumno, dniAlumno });
-        await newStudent.save();
-
-        return res.status(201).send('Estudiante agregado exitosamente.');
-    } catch (error) {
-        if (error.code === 'ER_DUP_ENTRY') { // MySQL error code for duplicate entry
-            return res.status(400).send('El DNI ya está registrado.');
-        }
-        return res.status(500).send(error.message);
-    }
+// Iniciar el servidor
+app.listen(8000, () => {
+  console.log("Server UP running in http://localhost:8000/");
 });

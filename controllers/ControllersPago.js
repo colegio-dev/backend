@@ -33,6 +33,7 @@ export const createPago = async (req, res) => {
     }
 }
 
+
 export const updatePago = async (req, res) => {
     try{
         await pagosModel.update(req.body,{
@@ -58,3 +59,28 @@ export const deletePago = async(req, res) => {
         res.json({message: error.message})
     }
 }
+
+
+export const getPagosConEstado = async (req, res) => {
+    try {
+      const pagos = await pagosModel.findAll();
+  
+      const pagosConEstado = pagos.map((pago) => {
+        const cuotasPagadas = Math.floor(pago.importe / pago.montoPorCuota);
+        const cuotasRestantes = pago.totalCuotas - cuotasPagadas;
+        const cuotaCompleta = cuotasRestantes === 0;
+  
+        return {
+          ...pago.dataValues,
+          cuotasPagadas,
+          cuotasRestantes,
+          cuotaCompleta,
+        };
+      });
+  
+      res.json(pagosConEstado);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  };
+  
