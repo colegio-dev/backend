@@ -65,8 +65,8 @@ const alumnoModel = db.define(
       importe: { type: DataTypes.INTEGER },
       cuotasPagadas: { type: DataTypes.INTEGER, defaultValue: 0 },
       comprobante: { type: DataTypes.STRING },
-      totalCuotas: { type: DataTypes.INTEGER, defaultValue: 12 },
-      montoPorCuota: { type: DataTypes.DECIMAL(10, 2), defaultValue: 150000 },
+      totalCuotas: { type: DataTypes.INTEGER },
+      montoPorCuota: { type: DataTypes.DECIMAL(10, 2) },
     },
     {
       timestamps: false,
